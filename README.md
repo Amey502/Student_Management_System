@@ -35,6 +35,9 @@ Install MySQL connector:
 
 ```bash
 pip install mysql-connector-python
+```
+
+---
 
 ##Database Setup
 
