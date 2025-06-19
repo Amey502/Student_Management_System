@@ -39,7 +39,7 @@ pip install mysql-connector-python
 
 ---
 
-##Database Setup
+## Database Setup
 
 - Open MySQL Workbench or your preferred MySQL client.
 - Create a new database:
