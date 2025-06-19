@@ -1,0 +1,96 @@
+NORMALIZED
+
+
+CREATE TABLE class_section (
+    class INT NOT NULL check(class>=1 and class<=10),
+    section VARCHAR(2) NOT NULL CHECK (section IN ('A', 'B', 'C', 'D', 'E')),
+    PRIMARY KEY (class, section)
+); -----------
+
+
+CREATE TABLE teacher (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL CHECK (age > 0),
+    DOB DATE NOT NULL,
+    class INT NOT NULL,
+    section VARCHAR(2) NOT NULL,
+    salary INT NOT NULL CHECK (salary > 0),
+    address varchar(100) not null,
+    FOREIGN KEY (class, section) REFERENCES class_section(class, section)
+); --------------
+
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL CHECK (age > 0),
+    DOB DATE NOT NULL,
+    address varchar(100) NOT NULL,
+    class INT NOT NULL,
+    section VARCHAR(2) NOT NULL,
+    MID INT NOT NULL,
+    pwd VARCHAR(50) NOT NULL,
+    FOREIGN KEY (class, section) REFERENCES class_section(class, section),
+    FOREIGN KEY (MID) REFERENCES teacher(id)
+); --------------
+
+CREATE TABLE grades (
+    id INT NOT NULL,
+    hist INT NOT NULL CHECK (hist >= 0 AND hist <= 100),
+    civ INT NOT NULL CHECK (civ >= 0 AND civ <= 100),
+    geo INT NOT NULL CHECK (geo >= 0 AND geo <= 100),
+    sci INT NOT NULL CHECK (sci >= 0 AND sci <= 100),
+    eng INT NOT NULL CHECK (eng >= 0 AND eng <= 100),
+    math INT NOT NULL CHECK (math >= 0 AND math <= 100),
+    att INT NOT NULL CHECK (att >= 0 AND att <= 250),
+    FOREIGN KEY (id) REFERENCES student(id) on delete cascade
+); 
+
+CREATE TABLE mentor_mentee (
+    sid INT NOT NULL,
+    tid INT NOT NULL,
+    PRIMARY KEY (sid, tid),
+    FOREIGN KEY (sid) REFERENCES student(id) on delete cascade,
+    FOREIGN KEY (tid) REFERENCES teacher(id)
+);
+
+CREATE TABLE parent (
+    id INT not null,
+    Fname VARCHAR(100),
+    Mname VARCHAR(100),
+    Fage INT NOT NULL CHECK (Fage >= 0),
+    Mage INT NOT NULL CHECK (Mage >= 0),
+    FDOB DATE NOT NULL,
+    MDOB DATE NOT NULL,
+    FOcc VARCHAR(100),
+    MOcc VARCHAR(100),
+    Inc INT NOT NULL,
+    foreign key(id) references student(id) on delete cascade
+); ----------
+
+
+INSERT INTO class_section (class, section) VALUES
+(1, 'A'), (1, 'B'), (1, 'C'), (1, 'D'), (1, 'E'),
+(2, 'A'), (2, 'B'), (2, 'C'), (2, 'D'), (2, 'E'),
+(3, 'A'), (3, 'B'), (3, 'C'), (3, 'D'), (3, 'E'),
+(4, 'A'), (4, 'B'), (4, 'C'), (4, 'D'), (4, 'E'),
+(5, 'A'), (5, 'B'), (5, 'C'), (5, 'D'), (5, 'E'),
+(6, 'A'), (6, 'B'), (6, 'C'), (6, 'D'), (6, 'E'),
+(7, 'A'), (7, 'B'), (7, 'C'), (7, 'D'), (7, 'E'),
+(8, 'A'), (8, 'B'), (8, 'C'), (8, 'D'), (8, 'E'),
+(9, 'A'), (9, 'B'), (9, 'C'), (9, 'D'), (9, 'E'),
+(10, 'A'), (10, 'B'), (10, 'C'), (10, 'D'), (10, 'E');
+
+create table deleted_student(
+	id int,
+	name varchar(100),
+	class int,
+	dob date
+);
+
+create table deleted_teacher(
+	id int,
+	name varchar(100),
+	subject varchar(100),
+	dob date
+);
