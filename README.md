@@ -35,3 +35,11 @@ Install MySQL connector:
 
 ```bash
 pip install mysql-connector-python
+
+##Database Setup
+
+- Open MySQL Workbench or your preferred MySQL client.
+- Create a new database:
+CREATE DATABASE student_management;
+- Use the sample schema given in the .txt file.
+
