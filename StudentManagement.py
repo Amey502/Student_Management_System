@@ -1124,7 +1124,7 @@ class AdminApp:
 
         if textID == '12345' and textPas == 'Admin@123':
             self.root.destroy()
-            Admin()  # Make sure the Admin() class is defined elsewhere
+            Admin()  
         else:
             messagebox.showerror("Login Failed", "Invalid Admin ID or Password")
 
@@ -1144,14 +1144,14 @@ class StudentManagementSystem:
         self.root.mainloop()
 
     def open_admin(self):
-        self.root.destroy()  # Close the main window
-        AdminApp(tk.Tk())  # Open the AdminApp class
+        self.root.destroy()  
+        AdminApp(tk.Tk())  
 
     def open_student(self):
-        self.root.destroy()  # Close the main window
-        StudentApp(tk.Tk())  # Open the StudentApp class
+        self.root.destroy()  
+        StudentApp(tk.Tk()) 
 
 
-# Launch the Student Management System
+# launch
 StudentManagementSystem()
 
